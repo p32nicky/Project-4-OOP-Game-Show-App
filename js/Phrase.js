@@ -31,7 +31,7 @@
 */
    checkLetter(letter){
       const splitPhrase = this.phrase.split('');
-      if (splitPhrase.include(letter)){
+      if (splitPhrase.includes(letter)){
         return true;
       } else {
         return false;
@@ -44,9 +44,9 @@
    */
 
    showMatchedLetter(letter){
-     if(letter === true){
-       liLetter.className(letter).setAttribute('class', 'show');
-     } else {
+     const showLetter = document.querySelectorAll('.' + letter);
+     for (let i = 0; i < showLetter.length; i++){
+       showLetter[i].setAttribute('class', 'show');
        //removeLife();
      }
    }

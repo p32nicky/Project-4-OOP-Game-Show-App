@@ -15,11 +15,11 @@
 */
    createPhrases(){
      const phrases = [
-       new Phrase("Ill Be Back"),
-       new Phrase("Heads Up"),
-       new Phrase("Hasta la vista baby"),
-       new Phrase("I like this car"),
-       new Phrase("Come with me")
+       new Phrase("ill be back"),
+       new Phrase("heads up"),
+       new Phrase("hasta la vista baby"),
+       new Phrase("i like this car"),
+       new Phrase("come with me")
      ];
      return phrases;
    }
@@ -51,37 +51,46 @@
      console.log()
    }
 
+
    removeLife(){
-     const lives = 5;
-     const heartImage = 'images\lostHeart.png';
-     if (checkLetter === false){
-       lives -= 1;
-     var imgReplace = document.getElementsByClassName("tries")[0];
-     heartImage.src = "hackanm.gif";
-     heartImage.style.visibility = "visible";
-     }
-     if (lives === 0){
-       gameOver(lose);
+       var imgReplace = document.getElementsByClassName("tries")[this.missed];
+       imgReplace.firstElementChild.setAttribute('src', 'images/lostHeart.png');
+    this.missed +=1;
+     if (this.missed === 5){
+       this.gameOver(false);
      }
 
    }
 
    checkForWin(){
-     if(this.phrase.show === this.phrase.length){
-       return true;
-     } else {
-       return false;
-     }
+
+     let missingLetter = 0;
+      for (var ml = 0; ml <phraseDivUl.length; ml ++){
+        if (phraseDivUl[i].className == "hide letter") {
+						missingLetters += 1;
+					}
+          if (missLetters ===true){
+            return true;
+          }
+      }
    }
 
    gameOver(checkForWin){
-     if(checkForWin === 'true'){
-       document.getElementById('overlay').style.display = 'block';
-       document.getElementById('title').h2.innerHTML = 'You win, congrats!';
-     }else if(checkForWin === 'false'){
-       document.getElementById('overlay').style.display = 'block';
-       document.getElementById('title').h2.innerHTML = 'You lost, try again!';
-     }
+
+     const overlay = document.querySelector('#overlay');
+     const message = document.querySelector('#game-over-message');
+
+     if(this.checkForWin === true){
+       overlay.style.display = '';
+       message.textContent = 'YOU WIN';
+       overlay.style.backgroundColor = 'green';
+
+     }else {
+       overlay.style.display = '';
+       message.textContent = 'YOU LOST';
+       overlay.style.backgroundColor = 'red';
+
 
    }
  }
+}
