@@ -30,8 +30,7 @@
 * @param (string) letter - Letter to check
 */
    checkLetter(letter){
-      const splitPhrase = null;
-      splitPhrase = this.phrase.split('');
+      const splitPhrase = this.phrase.split('');
       if (splitPhrase.include(letter)){
         return true;
       } else {
@@ -46,9 +45,9 @@
 
    showMatchedLetter(letter){
      if(letter === true){
-       liLetter.className(letter).show;
+       liLetter.className(letter).setAttribute('class', 'show');
      } else {
-       //live - 1
+       //removeLife();
      }
    }
 

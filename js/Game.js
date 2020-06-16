@@ -23,7 +23,7 @@
      ];
      return phrases;
    }
-   
+
    /**
    * Begins game by selecting a random phrase and displaying it to user
    */
@@ -52,14 +52,36 @@
    }
 
    removeLife(){
+     const lives = 5;
+     const heartImage = 'images\lostHeart.png';
+     if (checkLetter === false){
+       lives -= 1;
+     var imgReplace = document.getElementsByClassName("tries")[0];
+     heartImage.src = "hackanm.gif";
+     heartImage.style.visibility = "visible";
+     }
+     if (lives === 0){
+       gameOver(lose);
+     }
 
    }
 
    checkForWin(){
-
+     if(this.phrase.show === this.phrase.length){
+       return true;
+     } else {
+       return false;
+     }
    }
 
-   gameOver(){
+   gameOver(checkForWin){
+     if(checkForWin === 'true'){
+       document.getElementById('overlay').style.display = 'block';
+       document.getElementById('title').h2.innerHTML = 'You win, congrats!';
+     }else if(checkForWin === 'false'){
+       document.getElementById('overlay').style.display = 'block';
+       document.getElementById('title').h2.innerHTML = 'You lost, try again!';
+     }
 
    }
  }
