@@ -28,6 +28,7 @@
    * Begins game by selecting a random phrase and displaying it to user
    */
    startGame(){
+
      document.getElementById('overlay').style.display = 'none';
      //hide start screen overlay -
      this.activePhrase = this.getRandomPhrase();
@@ -47,11 +48,27 @@
       return randomPhrase;
    }
 
-   handleInteraction(){
-     console.log()
+   handleInteraction(key){
+  //   key.target.disabled = true;
+
+     console.log(key.innerText);
+     key.disabled = true;
+
+     //buttonTest.disabled = true;
+     if(this.activePhrase.checkLetter(key.textContent) === true){
+       key.classList.add('chosen');
+       this.checkForWin();
+
+       console.log();
+     }
+     if(this.activePhrase.checkLetter(key.textContent) === false){
+       key.classList.add('wrong');
+       this.removeLife();
+
+       this.activePhrase.showMatchedLetter(key);
+     }
+
    }
-
-
    removeLife(){
        var imgReplace = document.getElementsByClassName("tries")[this.missed];
        imgReplace.firstElementChild.setAttribute('src', 'images/lostHeart.png');
@@ -63,9 +80,10 @@
    }
 
    checkForWin(){
+     const phraseDiv = document.getElementById('phrase').firstElementChild;
 
      let missingLetter = 0;
-      for (var ml = 0; ml <phraseDivUl.length; ml ++){
+      for (var ml = 0; ml <phraseDiv.length; ml ++){
         if (phraseDivUl[i].className == "hide letter") {
 						missingLetters += 1;
 					}
@@ -84,13 +102,13 @@
        overlay.style.display = '';
        message.textContent = 'YOU WIN';
        overlay.style.backgroundColor = 'green';
-
+       reset.addEventListener('click', window.location.reload());
      }else {
        overlay.style.display = '';
        message.textContent = 'YOU LOST';
        overlay.style.backgroundColor = 'red';
-
+       reset.addEventListener('click', window.location.reload());
+     }
 
    }
- }
 }

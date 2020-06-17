@@ -43,11 +43,17 @@
    * @param (string) letter - Letter to display
    */
 
+
+
    showMatchedLetter(letter){
-     const showLetter = document.querySelectorAll('.' + letter);
-     for (let i = 0; i < showLetter.length; i++){
-       showLetter[i].setAttribute('class', 'show');
-       //removeLife();
+     const phraseDivUl = document.getElementById('phrase').firstElementChild.children;
+     const phraseDiv = document.getElementById('phrase').firstElementChild;
+
+     console.log(letter.innerHTML);
+     for (let i = 0; i < phraseDivUl.length; i++){
+       if(letter.innerHTML == phraseDivUl[i].textContent){
+       phraseDivUl[i].className = 'show';
+       }
      }
    }
 
