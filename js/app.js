@@ -7,6 +7,7 @@ var game = new Game();
 
 const reset = document.getElementById("btn__reset");
 reset.addEventListener("click", function(){
+  game.refreshPage();
     game = new Game();
      game.startGame();
 });

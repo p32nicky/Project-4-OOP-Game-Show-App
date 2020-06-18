@@ -72,6 +72,7 @@
    removeLife(){
        var imgReplace = document.getElementsByClassName("tries")[this.missed];
        imgReplace.firstElementChild.setAttribute('src', 'images/lostHeart.png');
+
     this.missed +=1;
      if (this.missed === 5){
        this.gameOver(false);
@@ -93,8 +94,7 @@
       }
    }
 
-   gameOver(checkForWin){
-
+   gameOver(checkForWin, refreshPage){
      const overlay = document.querySelector('#overlay');
      const message = document.querySelector('#game-over-message');
 
@@ -102,13 +102,47 @@
        overlay.style.display = '';
        message.textContent = 'YOU WIN';
        overlay.style.backgroundColor = 'green';
-       reset.addEventListener('click', window.location.reload());
      }else {
        overlay.style.display = '';
        message.textContent = 'YOU LOST';
        overlay.style.backgroundColor = 'red';
-       reset.addEventListener('click', window.location.reload());
      }
+   }
 
+   refreshPage(){
+     const keyReset = document.getElementsByClassName('key');
+     Array.from(keyReset).forEach((key) => {
+       key.className = ('key');
+       key.disabled = false;
+     });
+
+     const newTries = document.querySelectorAll('.tries');
+      for (let i = 0; i < newTries.length; i++) {
+        newTries[i].firstElementChild.setAttribute('src', 'images/liveHeart.png');
+      }
+
+/*
+      const heartReset = document.getElementsByClassName('tries');
+      Array.from(heartReset).forEach((heart) => {
+      heartReset.firstElementChild.setAttribute('src', 'images/liveHeart.png');
+      });
+*/
+
+      const existingPhraseLetterArray = document.getElementById('phrase').firstElementChild.children;
+      if (existingPhraseLetterArray.length > 0) {
+       Array.from(existingPhraseLetterArray).forEach((letter) => {
+         letter.parentNode.removeChild(letter);
+       });
+
+
+      }
    }
 }
+/*
+
+
+  */
+  //phraseDivUl
+     //lives
+     //hearts
+    // buttons
