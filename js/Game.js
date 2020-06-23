@@ -78,7 +78,7 @@
 
    }
 
-   //Remove life handler used missed
+   //Remove life handler using missed
    removeLife(){
        var imgReplace = document.getElementsByClassName("tries")[this.missed];
        imgReplace.firstElementChild.setAttribute('src', 'images/lostHeart.png');
