@@ -20,7 +20,7 @@
        if (this.phrase[i] == ' ') {
          liLetter.className = 'space';
        } else if (this.phrase[i] == phraseSplit[i]) {
-         liLetter.className += ' hide letter';
+         liLetter.className += 'hide letter';
        }
      }
    }
@@ -49,10 +49,9 @@
      const phraseDivUl = document.getElementById('phrase').firstElementChild.children;
      const phraseDiv = document.getElementById('phrase').firstElementChild;
 
-     console.log(letter.innerHTML);
      for (let i = 0; i < phraseDivUl.length; i++){
-       if(letter.innerHTML == phraseDivUl[i].textContent){
-       phraseDivUl[i].className = 'show';
+       if(letter == phraseDivUl[i].textContent){
+         phraseDivUl[i].className = 'show';
        }
      }
    }

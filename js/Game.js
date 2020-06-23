@@ -30,10 +30,23 @@
    startGame(){
 
      document.getElementById('overlay').style.display = 'none';
+
+
+     const keyReset = document.getElementsByClassName('key');
+     Array.from(keyReset).forEach((key) => {
+       key.className = ('key');
+       key.disabled = false;
+     });
+
+     const newTries = document.querySelectorAll('.tries');
+      for (let i = 0; i < newTries.length; i++) {
+        newTries[i].firstElementChild.setAttribute('src', 'images/liveHeart.png');
+      }
+
      //hide start screen overlay -
-     this.activePhrase = this.getRandomPhrase();
     // activePhrase.addPhraseToDisplay();
     const randomPhrase = game.getRandomPhrase();
+  this.activePhrase = randomPhrase;
     const phrase = new Phrase(randomPhrase.phrase);
     phrase.addPhraseToDisplay();
 
@@ -58,8 +71,8 @@
      if(this.activePhrase.checkLetter(key.textContent) === true){
        key.classList.add('chosen');
        this.checkForWin();
+       this.activePhrase.showMatchedLetter(key.textContent);
 
-       console.log();
      }
      if(this.activePhrase.checkLetter(key.textContent) === false){
        key.classList.add('wrong');
@@ -74,37 +87,37 @@
        imgReplace.firstElementChild.setAttribute('src', 'images/lostHeart.png');
 
     this.missed +=1;
-     if (this.missed === 5){
-       this.gameOver(false);
+     if (game.missed === 5){
+       game.gameOver(game.checkForWin = false);
      }
 
    }
 
    checkForWin(){
+
      const phraseDiv = document.getElementById('phrase').firstElementChild;
 
      let missingLetter = 0;
       for (var ml = 0; ml <phraseDiv.length; ml ++){
-        if (phraseDivUl[i].className == "hide letter") {
+        if (phraseDivUl[ml].className == "hide letter") {
 						missingLetters += 1;
 					}
-          if (missLetters ===true){
-            return true;
+          if (missLetters === 0){
+            game.gameOver(game.checkForWin = true);
           }
       }
    }
 
-   gameOver(checkForWin, refreshPage){
-     const overlay = document.querySelector('#overlay');
-     const message = document.querySelector('#game-over-message');
+   gameOver(checkForWin){
 
-     if(this.checkForWin === true){
+     const message = document.querySelector('#game-over-message');
+       if(this.checkForWin === true){
        overlay.style.display = '';
-       message.textContent = 'YOU WIN';
+       message.innerHTML = 'YOU WIN';
        overlay.style.backgroundColor = 'green';
-     }else {
+     }else if(this.checkForWin === false) {
        overlay.style.display = '';
-       message.textContent = 'YOU LOST';
+       message.innerHTML = 'YOU LOST';
        overlay.style.backgroundColor = 'red';
      }
    }
@@ -138,11 +151,3 @@
       }
    }
 }
-/*
-
-
-  */
-  //phraseDivUl
-     //lives
-     //hearts
-    // buttons
