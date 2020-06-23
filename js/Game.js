@@ -67,13 +67,11 @@
      console.log(key.innerText);
      key.disabled = true;
 
-     //buttonTest.disabled = true;
      if(this.activePhrase.checkLetter(key.textContent) === true){
        key.classList.add('chosen');
-       this.checkForWin();
        this.activePhrase.showMatchedLetter(key.textContent);
 
-     }
+    }
      if(this.activePhrase.checkLetter(key.textContent) === false){
        key.classList.add('wrong');
        this.removeLife();
@@ -95,27 +93,40 @@
 
    checkForWin(){
 
-     const phraseDiv = document.getElementById('phrase').firstElementChild;
+     const chosen = document.querySelectorAll('.show');
+             const space = document.querySelectorAll('.space');
+             if (this.activePhrase.phrase.length === (chosen.length + space.length)) {
+                 game.gameOver(game.checkForWin = true);
+             } else {
 
-     let missingLetter = 0;
-      for (var ml = 0; ml <phraseDiv.length; ml ++){
-        if (phraseDivUl[ml].className == "hide letter") {
-						missingLetters += 1;
-					}
-          if (missLetters === 0){
-            game.gameOver(game.checkForWin = true);
-          }
+                 return false;
+             }
+           }
+/*
+
+
+    const phraseDiv = document.getElementById('phrase').firstElementChild.children;
+    for (let ml = 0; ml <phraseDiv.length; ml ++){
+      if (phraseDiv[ml].className === 'hide letter') {
+          return false;
+        }
+        if (ml === 0){
+            return true
+        }
       }
-   }
 
-   gameOver(checkForWin){
+
+    }
+*/
+
+   gameOver(){
 
      const message = document.querySelector('#game-over-message');
-       if(this.checkForWin === true){
+       if(game.checkForWin === true){
        overlay.style.display = '';
        message.innerHTML = 'YOU WIN';
        overlay.style.backgroundColor = 'green';
-     }else if(this.checkForWin === false) {
+     }else if(game.checkForWin === false) {
        overlay.style.display = '';
        message.innerHTML = 'YOU LOST';
        overlay.style.backgroundColor = 'red';

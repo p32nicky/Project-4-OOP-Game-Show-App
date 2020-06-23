@@ -54,6 +54,9 @@
          phraseDivUl[i].className = 'show';
        }
      }
+     game.checkForWin();
+     game.gameOver();
+
    }
 
 

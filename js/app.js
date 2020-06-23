@@ -17,6 +17,7 @@ const keys = document.querySelectorAll('.key');
 keys.forEach(key => key.addEventListener('click', (e) => {
   console.log(key.innerHTML);
         game.handleInteraction(e.target);
+
     }));
 
 //I couldn't get this to work as it wouldn't correctly return the key value
