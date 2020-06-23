@@ -44,7 +44,7 @@
    */
 
 
-
+//Gets new created div UL and if letter is equal setts classname to show. Then calls check for win and game over.
    showMatchedLetter(letter){
      const phraseDivUl = document.getElementById('phrase').firstElementChild.children;
      const phraseDiv = document.getElementById('phrase').firstElementChild;

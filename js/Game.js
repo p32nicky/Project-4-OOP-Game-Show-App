@@ -26,25 +26,24 @@
 
    /**
    * Begins game by selecting a random phrase and displaying it to user
+   I reset keys on page load
    */
    startGame(){
 
      document.getElementById('overlay').style.display = 'none';
-
-
      const keyReset = document.getElementsByClassName('key');
      Array.from(keyReset).forEach((key) => {
        key.className = ('key');
        key.disabled = false;
      });
 
+
      const newTries = document.querySelectorAll('.tries');
       for (let i = 0; i < newTries.length; i++) {
         newTries[i].firstElementChild.setAttribute('src', 'images/liveHeart.png');
       }
 
-     //hide start screen overlay -
-    // activePhrase.addPhraseToDisplay();
+    //Calls random phrase and sets to active phrase and pushes to method add phrase to display
     const randomPhrase = game.getRandomPhrase();
   this.activePhrase = randomPhrase;
     const phrase = new Phrase(randomPhrase.phrase);
@@ -61,10 +60,8 @@
       return randomPhrase;
    }
 
+//Key press - Disable each key and assign visiual class CSS.
    handleInteraction(key){
-  //   key.target.disabled = true;
-
-     console.log(key.innerText);
      key.disabled = true;
 
      if(this.activePhrase.checkLetter(key.textContent) === true){
@@ -80,6 +77,8 @@
      }
 
    }
+
+   //Remove life handler used missed
    removeLife(){
        var imgReplace = document.getElementsByClassName("tries")[this.missed];
        imgReplace.firstElementChild.setAttribute('src', 'images/lostHeart.png');
@@ -91,34 +90,18 @@
 
    }
 
+//Checking for win using chosen number of letters and spaces as equal.
    checkForWin(){
-
-     const chosen = document.querySelectorAll('.show');
-             const space = document.querySelectorAll('.space');
-             if (this.activePhrase.phrase.length === (chosen.length + space.length)) {
+     const letterShow = document.querySelectorAll('.show');
+             const letterSpace = document.querySelectorAll('.space');
+             if (this.activePhrase.phrase.length === (letterShow.length + letterSpace.length)) {
                  game.gameOver(game.checkForWin = true);
              } else {
 
                  return false;
              }
            }
-/*
-
-
-    const phraseDiv = document.getElementById('phrase').firstElementChild.children;
-    for (let ml = 0; ml <phraseDiv.length; ml ++){
-      if (phraseDiv[ml].className === 'hide letter') {
-          return false;
-        }
-        if (ml === 0){
-            return true
-        }
-      }
-
-
-    }
-*/
-
+//Game Over Handler
    gameOver(){
 
      const message = document.querySelector('#game-over-message');
@@ -133,6 +116,7 @@
      }
    }
 
+//Reresh page handler = resetting each key, hearts and clearing existing phrase
    refreshPage(){
      const keyReset = document.getElementsByClassName('key');
      Array.from(keyReset).forEach((key) => {
@@ -144,13 +128,6 @@
       for (let i = 0; i < newTries.length; i++) {
         newTries[i].firstElementChild.setAttribute('src', 'images/liveHeart.png');
       }
-
-/*
-      const heartReset = document.getElementsByClassName('tries');
-      Array.from(heartReset).forEach((heart) => {
-      heartReset.firstElementChild.setAttribute('src', 'images/liveHeart.png');
-      });
-*/
 
       const existingPhraseLetterArray = document.getElementById('phrase').firstElementChild.children;
       if (existingPhraseLetterArray.length > 0) {
