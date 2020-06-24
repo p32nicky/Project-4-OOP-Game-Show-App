@@ -14,7 +14,7 @@
 * @return {array} An array of phrases that could be used in the game
 */
    createPhrases(){
-     const phrases = [  
+     const phrases = [
        new Phrase("ill be back"),
        new Phrase("heads up"),
        new Phrase("hasta la vista baby"),
@@ -73,7 +73,7 @@
        key.classList.add('wrong');
        this.removeLife();
 
-       this.activePhrase.showMatchedLetter(key);
+      // this.activePhrase.showMatchedLetter(key);
      }
 
    }
